@@ -68,3 +68,11 @@ task home_work(type: Test) {
         includeTags "home_work"
     }
 }
+
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+compileTestJava {
+    options.encoding = 'UTF-8'
+}

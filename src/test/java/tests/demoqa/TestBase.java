@@ -8,39 +8,32 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.util.Objects;
+
 public class TestBase {
-    /*
-    * {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = System.getProperty("browserSize");
-        if (System.getProperty("remote") != null) {
-            Configuration.remote = System.getProperty("remote");
-        }
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-    } */
 
     @BeforeAll
     static void configure() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         Configuration.browser = System.getProperty("browser", "chrome");
-        System.out.println(Configuration.browser);
-        Configuration.browserVersion = System.getProperty("browser_version", "100");
+        Configuration.browserVersion = System.getProperty("browser_version", "100.0");
         Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
+        String useRemoteBrowser = System.getProperty("use_remote_browser", "false");
+        String remoteURL = System.getProperty("remote", null);
 
-        Configuration.baseUrl = "https://demoqa.com";
+        if (Objects.equals(useRemoteBrowser, "true")) {
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        } else if (useRemoteBrowser == "false" && remoteURL != null) {
+            Configuration.remote = remoteURL;
+        }
 
-
-        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-
-        /*DesiredCapabilities capabilities = new DesiredCapabilities();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;*/
+        Configuration.browserCapabilities = capabilities;
+
+        Configuration.baseUrl = "https://demoqa.com";
     }
 
     @AfterEach
