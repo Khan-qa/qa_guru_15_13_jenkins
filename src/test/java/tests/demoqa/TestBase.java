@@ -24,7 +24,7 @@ public class TestBase {
 
         if (Objects.equals(useRemoteBrowser, "true") && remoteURL == null) {
             Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        } else if (useRemoteBrowser == "false" && remoteURL != null) {
+        } else if (Objects.equals(useRemoteBrowser, "false") && remoteURL != null) {
             Configuration.remote = remoteURL;
         }
 
