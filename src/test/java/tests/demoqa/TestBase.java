@@ -17,7 +17,7 @@ public class TestBase {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
         Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserVersion = System.getProperty("browser_version", "100.0");
+        Configuration.browserVersion = System.getProperty("browser_version", "100");
         Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
         String useRemoteBrowser = System.getProperty("use_remote_browser", "false");
         String remoteURL = System.getProperty("remote", null);
