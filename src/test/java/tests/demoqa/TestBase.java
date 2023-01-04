@@ -22,10 +22,9 @@ public class TestBase {
         String useRemoteBrowser = System.getProperty("use_remote_browser", "false");
         String remoteURL = System.getProperty("remote", null);
 
-        if (Objects.equals(useRemoteBrowser, "true") && remoteURL == null ||
-                Objects.equals(remoteURL, "")) {
+        if (Objects.equals(useRemoteBrowser, "true") && remoteURL == null) {
             Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        } else if (Objects.equals(useRemoteBrowser, "false") && remoteURL != null) {
+        } else if (Objects.equals(useRemoteBrowser, "true") && remoteURL != null) {
             Configuration.remote = remoteURL;
         }
 
