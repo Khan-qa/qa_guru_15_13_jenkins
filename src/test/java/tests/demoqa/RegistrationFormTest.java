@@ -11,7 +11,7 @@ import static io.qameta.allure.Allure.step;
 
 public class RegistrationFormTest extends TestBase {
     @Test
-    @Tag("one_property_test")
+    @Tag("home_work")
     void firstTest() {
         step("Open reg form", () -> {
             open("/automation-practice-form");

@@ -33,6 +33,7 @@ public class SystemPropertiesTests {
     }
 
     @Test
+    @Tag("one_property_test")
     void simplePropertyFourTest() {
         String browserName = System.getProperty("browser", "firefox");
         System.out.println(browserName);
